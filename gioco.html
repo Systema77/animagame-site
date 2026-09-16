@@ -11,6 +11,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Share+Tech+Mono&display=swap">
 <link rel="stylesheet" href="assets/stile.css">
 <style>
+/* ⚠️ `hidden` È UN ATTRIBUTO, E QUALUNQUE `display:` DEL FOGLIO LO BATTE.
+   Misurato il 15/09 in un browser vero: in gioco.html le tre stanze governate
+   dalla macchina restavano VISIBILI con hidden messo, perche' `.card` dichiara
+   un display. L'interruttore c'era e la pagina lo ignorava — lo stesso guasto
+   che questa regola esiste per chiudere, un piano piu' sotto.
+   Vale SOLO per le stanze legate a config.js: non tocca nessun altro hidden.
+   — JUDY 15/09 */
+[data-macchina][hidden]{display:none!important}
+</style>
+<style>
   /* ── HERO ── */
   .hero {
     display: flex;
@@ -369,7 +379,7 @@
            il giocatore a scegliere lo sportello prima di sapere cosa aveva in
            mano. Ordine del Direttore 30/08: una porta sola. Il titolo qui sotto
            è un segnaposto neutro — il nome vero lo sceglie lui. -->
-      <article class="card">
+      <article class="card" data-macchina="VERIFICHE.ACCESE" hidden>
         <div class="stato-riga">
           <h3 data-nome="segnaposto">La stanza delle verifiche</h3>
           <span class="stato">attiva</span>
@@ -397,11 +407,11 @@
            in fondo alla pagina la accende quando il backend risponde: un solo punto da
            cambiare (config.js). ⛔ Nessun numero di punti in chiaro.
            Era in index.html; dal 05/09 sta qui perché la home è diventata la porta (JUDY, 04/09). -->
-      <article class="card">
+      <article class="card" data-macchina="AURA.ACCESE" hidden>
         <div class="stato-riga"><h3>Guarda fuori</h3><span class="stato spento" id="guarda-fuori-stato">in arrivo</span></div>
         <p>Guardi fuori un minuto e dici che cielo vedi: aiuti AURA a capire chi, fra i tre
            modelli, ha ragione nel tuo posto. Vale punti, ogni giorno.</p>
-        <span class="btn presto" id="guarda-fuori-btn" aria-disabled="true">In arrivo</span>
+        <span class="btn presto" data-apre="guarda-fuori.html" aria-disabled="true">In arrivo</span>
       </article>
 
       <article class="card">
@@ -425,7 +435,7 @@
            (JUDY/PROGETTO-FALO-interazioni-cerchio.md). ⛔ Nessun numero qui:
            i punti del falò (v1.1) aspettano la ratifica del Direttore.
            ⛔ Lessico: mai «forum», «thread», «feed», «commenti». Mai «social». -->
-      <article class="card">
+      <article class="card" data-macchina="FALO.ACCESO" hidden>
         <div class="stato-riga"><h3>Il falò</h3><span class="stato spento">in arrivo</span></div>
         <p>La stanza dove il cerchio parla. Si accende un falò su una cosa che gira,
            e chi vuole dice la sua. Niente «mi piace», e niente che scorre.</p>
@@ -563,26 +573,11 @@
        l&rsquo;intelligenza artificiale. Il gioco è una delle cose che facciamo, non l&rsquo;insegna.</p>
   </footer>
 
-<!-- Accende la card «guarda fuori» SOLO se il backend esiste ed è dichiarato
-     acceso in assets/config.js — stesso degrado onesto delle altre stanze. -->
+<!-- Le stanze si accendono dalla macchina, non dalla penna: config.js dice
+     quali interruttori sono su true, stanze.js scopre solo quelle. Una stanza
+     spenta non è in vetrina (scelta del Direttore, 15/09). -->
 <script src="assets/config.js"></script>
-<script>
-(function () {
-  var CFG = window.AnimaConfig || {};
-  var AURA = CFG.AURA || {};
-  if (!(CFG.BACKEND_URL && AURA.ACCESE)) return;
-  var stato = document.getElementById('guarda-fuori-stato');
-  if (stato) { stato.textContent = 'attiva'; stato.classList.remove('spento'); }
-  var bottone = document.getElementById('guarda-fuori-btn');
-  if (bottone) {
-    var a = document.createElement('a');
-    a.className = 'btn';
-    a.href = 'guarda-fuori.html';
-    a.textContent = 'Entra';
-    bottone.replaceWith(a);
-  }
-})();
-</script>
+<script src="assets/stanze.js"></script>
 <script src="assets/solco.js" defer></script>
 
 <!-- creato da ECHO, 2026-08-01 · verde su nero su direzione JUDY, 2026-08-02

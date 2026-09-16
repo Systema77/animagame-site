@@ -11,6 +11,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Share+Tech+Mono&display=swap">
 <link rel="stylesheet" href="assets/stile.css">
 <style>
+/* ⚠️ `hidden` È UN ATTRIBUTO, E QUALUNQUE `display:` DEL FOGLIO LO BATTE.
+   Misurato il 15/09 in un browser vero: in gioco.html le tre stanze governate
+   dalla macchina restavano VISIBILI con hidden messo, perche' `.card` dichiara
+   un display. L'interruttore c'era e la pagina lo ignorava — lo stesso guasto
+   che questa regola esiste per chiudere, un piano piu' sotto.
+   Vale SOLO per le stanze legate a config.js: non tocca nessun altro hidden.
+   — JUDY 15/09 */
+[data-macchina][hidden]{display:none!important}
+</style>
+<style>
   .testata {
     max-width: 1080px;
     margin: 0 auto;
@@ -160,7 +170,7 @@
        ed è `verifiche.html`.
        ⬜ NOME-DEFINITIVO: «la stanza delle verifiche» è un segnaposto neutro.
        Il nome vero lo sceglie il Direttore. Qui e nel <h2> qui sotto. -->
-  <section class="stanza" id="verifiche">
+  <section class="stanza" id="verifiche" data-macchina="VERIFICHE.ACCESE" hidden>
     <div class="stanza-corpo">
       <div>
         <div class="stanza-testa">
@@ -211,7 +221,7 @@
        fondo alla pagina la accende quando il backend risponde davvero: un solo punto da
        cambiare (config.js), qui non si tocca nulla a mano.
        ⛔ Nessun numero di punti in chiaro — dottrina della home («non ce n'è una quinta»). -->
-  <section class="stanza spenta" id="guarda-fuori">
+  <section class="stanza spenta" id="guarda-fuori" data-macchina="AURA.ACCESE" hidden>
     <div class="stanza-corpo">
       <div>
         <div class="stanza-testa"><h2>Guarda fuori</h2><span class="stato spento">in arrivo</span></div>
@@ -229,7 +239,7 @@
       <div class="stanza-lato">
         <p class="stanza-punti" data-stato="spenta">in allestimento</p>
         <p class="stanza-punti" data-stato="attiva" hidden>un minuto &rarr; punti, ogni giorno</p>
-        <span class="btn presto" id="guarda-fuori-btn" aria-disabled="true">In arrivo</span>
+        <span class="btn presto" data-apre="guarda-fuori.html" aria-disabled="true">In arrivo</span>
         <p class="stanza-nota" data-stato="spenta">Non sarà un compito, sarà un&rsquo;occhiata. E conta
            solo se è vera: il cielo non si inventa da dietro un monitor.</p>
       </div>
@@ -262,7 +272,7 @@
        (JUDY/PROGETTO-FALO-interazioni-cerchio.md · fase F1 «si parla» = ECHO+SQUELCH).
        ⛔ NESSUN NUMERO: i punti del falò (v1.1) aspettano la ratifica del Direttore.
        ⛔ Lessico vietato: forum, thread, feed, commenti, post, social, moderatori. -->
-  <section class="stanza spenta" id="falo">
+  <section class="stanza spenta" id="falo" data-macchina="FALO.ACCESO" hidden>
     <div class="stanza-corpo">
       <div>
         <div class="stanza-testa"><h2>Il falò</h2><span class="stato spento">in arrivo</span></div>
@@ -310,6 +320,7 @@
      acceso in assets/config.js — stesso principio di degrado onesto delle
      altre stanze: di default la sezione sopra resta "in arrivo", nessuna finta. -->
 <script src="assets/config.js"></script>
+<script src="assets/stanze.js"></script>
 <script>
 (function () {
   var CFG = window.AnimaConfig || {};
