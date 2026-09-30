@@ -175,7 +175,9 @@ for (const p of pagine) {
     if (/^(https?:|mailto:|data:|tel:|#|\/\/)/i.test(href)) continue;
     const [file, ancora] = href.split('#');
     if (file) {
-      const meta = join(RADICE, file);
+      // Un href relativo parte dalla cartella della pagina, non dalla radice del sito
+      // (30/09: radio/index.html → favicon.svg dava «non c'è» mentre c'era, in radio/).
+      const meta = file.startsWith('/') ? join(RADICE, file) : join(dirname(p), file);
       if (!existsSync(meta)) { rotti++; male(`${relativo(p)} → ${href} (il file non c'è)`); continue; }
       if (ancora && meta.endsWith('.html')) {
         const dentro = readFileSync(meta, 'utf8');
