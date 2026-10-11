@@ -15,7 +15,7 @@
   --muto:        #8F8A82;
   --linea:       #2A2A26;
   --font-mono:  'Share Tech Mono', 'Courier New', 'Lucida Console', monospace;
-  --font-serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Georgia', serif;
+  --font-serif: 'Newsreader', 'Georgia', serif;
 }
 
 html { scroll-behavior: smooth; }
