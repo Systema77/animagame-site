@@ -1,11 +1,14 @@
 <!doctype html>
-<html data-casa="gioco" lang="it">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le stanze — ANIMA GAME</title>
 <meta name="description" content="Le stanze di ANIMA GAME: verifiche, meteo, radio, il falò. Gli strumenti sono il gioco.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Share+Tech+Mono&display=swap">
 <link rel="stylesheet" href="assets/stile.css">
 <style>
 /* ⚠️ `hidden` È UN ATTRIBUTO, E QUALUNQUE `display:` DEL FOGLIO LO BATTE.
@@ -140,8 +143,6 @@
     color: var(--muto);
   }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Share+Tech+Mono&display=swap">
-<link rel="stylesheet" href="galassia.css">
 </head>
 <body>
 
@@ -164,9 +165,8 @@
        giocatore doveva scegliere PRIMA di sapere cosa aveva in mano: una
        decisione nostra, scaricata su di lui. Adesso è un banco solo, e chi
        smista sta dietro.
-       ⛔ I due «Entra» puntavano a cyberboomer.io — il banco privato del
-       Direttore, dove il giocatore non entrerà. Tolti: la stanza è in casa,
-       ed è `verifiche.html`.
+       ⛔ I due «Entra» puntavano al banco privato del Direttore, dove il
+       giocatore non entrerà. Tolti: la stanza è in casa, ed è `verifiche.html`.
        ⬜ NOME-DEFINITIVO: «la stanza delle verifiche» è un segnaposto neutro.
        Il nome vero lo sceglie il Direttore. Qui e nel <h2> qui sotto. -->
   <section class="stanza" id="verifiche" data-macchina="VERIFICHE.ACCESE" hidden>
@@ -198,7 +198,7 @@
 
   <!-- Era "in arrivo": falso dal 19/08, il motore (AURA) è online. Non ha ancora
        una stanza sua qui dentro, quindi non è "attiva" come le altre: è vera e
-       funziona altrove. Nessun indirizzo cyberboomer.io ai giocatori: l'indirizzo
+       funziona altrove. Nessun indirizzo del banco privato ai giocatori: l'indirizzo
        pubblico è quello dell'agenzia. Stessa correzione di index.html. -->
   <section class="stanza altrove" id="meteo">
     <div class="stanza-corpo">
@@ -223,7 +223,7 @@
   <section class="stanza spenta" id="guarda-fuori" data-macchina="AURA.ACCESE" hidden>
     <div class="stanza-corpo">
       <div>
-        <div class="stanza-testa"><h2>Guarda fuori</h2><span class="stato spento">in arrivo</span></div>
+        <div class="stanza-testa"><h2>Guarda fuori</h2><span class="stato spento">chiuso per ora</span></div>
         <p class="stanza-desc" data-stato="spenta">La stanza dove il gioco guarderà il cielo vero,
            ancora in allestimento. Quando si accende: lasci lo schermo un minuto, guardi fuori,
            e dici che cielo vedi — aiuti AURA a imparare quale modello ha ragione nel tuo posto.</p>
@@ -238,7 +238,7 @@
       <div class="stanza-lato">
         <p class="stanza-punti" data-stato="spenta">in allestimento</p>
         <p class="stanza-punti" data-stato="attiva" hidden>un minuto &rarr; punti, ogni giorno</p>
-        <span class="btn presto" data-apre="guarda-fuori.html" aria-disabled="true">In arrivo</span>
+        <span class="btn presto" data-apre="guarda-fuori.html" aria-disabled="true">Chiuso per ora</span>
         <p class="stanza-nota" data-stato="spenta">Non sarà un compito, sarà un&rsquo;occhiata. E conta
            solo se è vera: il cielo non si inventa da dietro un monitor.</p>
       </div>
@@ -274,7 +274,7 @@
   <section class="stanza spenta" id="falo" data-macchina="FALO.ACCESO" hidden>
     <div class="stanza-corpo">
       <div>
-        <div class="stanza-testa"><h2>Il falò</h2><span class="stato spento">in arrivo</span></div>
+        <div class="stanza-testa"><h2>Il falò</h2><span class="stato spento">chiuso per ora</span></div>
         <p class="stanza-desc">La stanza dove il cerchio parla. Si <strong>accende un
            falò</strong> su una cosa che gira o su un referto appena uscito, e chi vuole
            <strong>dice la sua</strong>. Non è una bacheca che scorre: i falò non passano
@@ -289,7 +289,7 @@
       </div>
       <div class="stanza-lato">
         <p class="stanza-punti">in allestimento</p>
-        <span class="btn presto" aria-disabled="true">In arrivo</span>
+        <span class="btn presto" aria-disabled="true">Chiuso per ora</span>
         <p class="stanza-nota">Niente «mi piace»: si accende, si parla, e a spegnere
            è uno solo. Un falò spento resta leggibile — si spegne il fuoco, non la memoria.</p>
       </div>
@@ -306,9 +306,9 @@
   </footer>
 
 <!-- ⛔ Qui c'era uno <script> che leggeva la data dell'ultima risposta da
-     un file di dati sulla console (`cyberboomer.io/data/…`). Il pescaggio è tolto il
-     30/08: cyberboomer.io è il banco privato del Direttore, non una sorgente
-     del gioco, e questa pagina è pubblica due volte (sito + raw).
+     un file di dati sulla console del banco privato. Il pescaggio è tolto il
+     30/08: quel banco è del Direttore, non una sorgente del gioco, e questa
+     pagina è pubblica due volte (sito + raw).
      Il principio di quello script resta buono e vale ancora: una data scritta
      a mano invecchia il giorno dopo e nessuno se ne accorge. Quando SQUELCH
      accende `GET /verifiche` (contratto in `assets/config.js`), la riga torna
