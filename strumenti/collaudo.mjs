@@ -193,9 +193,20 @@ if (!rotti && !ancoreMorte) ok('ogni link interno porta a un file che esiste, og
 /* ═══ 4 · I COLORI DI UN'ALTRA CASA ═════════════════════════════════════ */
 titolo('4 · colori vietati');
 if (!CASA.coloriVietati.length) nota('nessun colore vietato in questa casa');
+// galassia.css è il canone comune (v3, 11/10): porta un accento per casa e lo sceglie
+// <html data-casa>. Lì il giallo è definito, non usato: quello che morde è che ogni pagina
+// che lo carica dica data-casa="gioco", altrimenti l'accento di partenza è il giallo.
+// (SQUELCH, 13/10: il guardiano era rosso sul canone, e nessuna pagina mostrava il giallo.)
+const CANONE = 'galassia.css';
+const senzaCasa = spediti.filter((p) => p.endsWith('.html')).filter((p) => {
+  const t = readFileSync(p, 'utf8');
+  return t.includes(CANONE) && !/<html[^>]*data-casa="gioco"/.test(t);
+});
+if (senzaCasa.length) male(`${CANONE} caricato senza data-casa="gioco" in ${senzaCasa.map(relativo).join(', ')} — l'accento sarebbe il giallo dell'agenzia`);
+else ok(`ogni pagina che carica ${CANONE} dice data-casa="gioco"`);
 for (const { cosa, perche } of CASA.coloriVietati) {
-  // Solo dove il colore è USATO, non dove è spiegato in un commento.
-  const dentro = spediti.filter((p) => {
+  // Solo dove il colore è USATO, non dove è spiegato in un commento; il canone comune a parte (sopra).
+  const dentro = spediti.filter((p) => !p.endsWith(CANONE)).filter((p) => {
     const t = readFileSync(p, 'utf8').replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/<!--[\s\S]*?-->/g, ' ');
     return new RegExp(cosa, 'i').test(t);
   });
