@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>◉ Radio Systema 77 · 20.26 FM</title>
+<meta name="description" content="La radio di SYSTEMA 77. Solo musica nostra.">
+<!-- L'icona sta QUI dentro, non in ../assets/. Su Cloudflare Pages i «..»
+     oltre la radice collassano, e quell'indirizzo rispondeva 200 con la pagina
+     di ripiego: un'icona che non esisteva ma sembrava esistere.
+     Trovata da scripts/promesse.py, che ora parte da solo dopo ogni pubblicazione. -->
+<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="radio-player.css">
+</head>
+<body>
+
+  <main class="radio-pagina">
+    <p class="radio-sigla">RADIO SYSTEMA 77 &middot; 20.26 FM</p>
+    <h1>Trasmettiamo dal buio.</h1>
+    <div class="radio-ora"><b>20:26</b><span>ogni sera<br>sei minuti e mezzo</span></div>
+    <p>
+      Va in onda <strong>ogni sera alle 20:26</strong> e dura sei minuti e mezzo. Se entri a met&agrave;, la met&agrave; &egrave; persa &mdash; come in una radio vera. Fuori da quell&rsquo;ora c&rsquo;&egrave; la replica.
+      Tutto quello che senti &egrave; stato calcolato dal nostro motore: nessun campione di
+      nessuno, nessuna voce che non possiamo firmare, nessun artista imitato.</p>
+    <p>
+      La radio <strong>non ti insegue</strong>: non parte da sola,
+      non ti manda notifiche, non gira in tondo. Quando finisce, finisce. Una notifica ti
+      raggiunge; la radio devi sintonizzarla tu.</p>
+    <p class="nota-diritti">
+      Ogni brano ha una garanzia dei diritti scritta prima dell&rsquo;ascolto, non dopo.
+      Nessun brano va in onda se quella garanzia non passa il controllo.<br>
+      <!-- Il registro rende CONTROLLABILE la promessa. Prima viveva solo in
+           SUONO/garanzie/, sul nostro disco: per noi era vera, per il mondo non
+           esisteva. Si genera dalle garanzie con
+           `python3 SUONO/motore/registro_diritti.py`, non si scrive a mano. -->
+      <a href="diritti.html">Chi ha fatto ogni suono, uno per uno &rarr;</a></p>
+  </main>
+
+  <div id="anima-radio-gate">
+    <div class="wordmark">SYSTEMA 77</div>
+    <button type="button" class="enter-btn">ENTRA</button>
+  </div>
+
+  <script src="orario.js"></script>
+  <script src="radio-player.js"></script>
+</body>
+</html>
